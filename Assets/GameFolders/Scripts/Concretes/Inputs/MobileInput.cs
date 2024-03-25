@@ -12,5 +12,7 @@ namespace Concretes.Inputs
         public float Vertical => throw new System.NotImplementedException();
 
         public bool JumpButtonDown => throw new System.NotImplementedException();
+
+        public bool AttackButtonDown => throw new System.NotImplementedException();
     }
 }

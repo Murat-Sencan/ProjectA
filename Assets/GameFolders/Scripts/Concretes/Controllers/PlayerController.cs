@@ -40,6 +40,12 @@ namespace Concretes.Controllers
         {
             _horizontal = _input.Horizontal;
 
+            if(_input.AttackButtonDown)
+            {
+                _animation.AttackAnimation();
+                return;
+            }
+
             if (_input.JumpButtonDown && _onGround.IsGround)
             {
                 _isJump = true;

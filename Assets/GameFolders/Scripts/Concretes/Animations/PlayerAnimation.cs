@@ -15,6 +15,11 @@ namespace Concretes.Animations
             _animator = animator;
         }
 
+        public void AttackAnimation()
+        {
+            _animator.SetTrigger("attack");
+        }
+
         public void JumpAnimation(bool isJump)
         {
             if (_animator.GetBool("isJump") == isJump) return;

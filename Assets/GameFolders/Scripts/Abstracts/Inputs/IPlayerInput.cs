@@ -9,5 +9,6 @@ namespace Abstracts.Inputs
         float Horizontal { get ;}
         float Vertical { get; }
         bool JumpButtonDown { get; }
+        bool AttackButtonDown { get; }
     }
 }
