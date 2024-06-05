@@ -1,3 +1,4 @@
+using Abstracts.Controllers;
 using Abstracts.Movements;
 using Concretes.Controllers;
 using System.Collections;
@@ -8,16 +9,18 @@ namespace Concretes.Movements
 {
     public class Mover : IMover
     {
-        PlayerController _playerController;
+        IEntityController _entityController;
+        float _moveSpeed;
 
-        public Mover(PlayerController playerController)
+        public Mover(IEntityController entityController, float moveSpeed)
         {
-            _playerController = playerController;
+            _entityController = entityController;
+            _moveSpeed = moveSpeed;
         }
 
         public void Tick(float horizontal)
         {
-            _playerController.transform.Translate(Vector2.right * horizontal * Time.deltaTime);
+            _entityController.transform.Translate(Vector2.right * horizontal * Time.deltaTime);
         }
     }
 }

@@ -11,7 +11,7 @@ using UnityEngine;
 
 namespace Concretes.Controllers
 {
-    public class PlayerController : MonoBehaviour, Abstracts.Controllers.IEntityController
+    public class PlayerController : MonoBehaviour, IEntityController
     {
         IPlayerInput _input;
         IMover _mover;
@@ -29,7 +29,7 @@ namespace Concretes.Controllers
         private void Awake()
         {
             _input = new PcInput();
-            _mover = new Mover(this);
+            _mover = new Mover(this, _moveSpeed);
             _animation = new PlayerAnimation(GetComponent<Animator>());
             _flip = new Flip(this);
             _jump = new Jump(GetComponent<Rigidbody2D>());
@@ -40,7 +40,7 @@ namespace Concretes.Controllers
         {
             _horizontal = _input.Horizontal;
 
-            if(_input.AttackButtonDown)
+            if(_input.AttackButtonDown && _horizontal == 0f)
             {
                 _animation.AttackAnimation();
                 return;

@@ -9,9 +9,9 @@ namespace Concretes.Movements
 {
     public class Flip : IFlip
     {
-        IEntityController _entity;
+        Abstracts.Controllers.IEntityController _entity;
 
-        public Flip(IEntityController entity)
+        public Flip(Abstracts.Controllers.IEntityController entity)
         {
             _entity = entity;
         }
