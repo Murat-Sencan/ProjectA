@@ -1,4 +1,5 @@
 using Abstracts.Animations;
+using Abstracts.Controllers;
 using Abstracts.Movements;
 using Abstracts.StateMachines;
 using System.Collections;
@@ -36,7 +37,6 @@ namespace Concretes.EnemyStates
         public void OnExit()
         {
             _currentStandTime = 0f;
-            Debug.Log("Idle On Exit");
         }
 
         public void Tick()
