@@ -9,5 +9,7 @@ namespace Abstracts.Animations
         void MoveAnimation(float moveSpeed);
         void JumpAnimation(bool isJump);
         void AttackAnimation();
+        void TakeHitAnimation();
+        void DeadAnimation();
     }
 }

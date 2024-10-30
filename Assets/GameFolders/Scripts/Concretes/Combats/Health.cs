@@ -8,20 +8,22 @@ namespace Concretes.Combats
     public class Health : MonoBehaviour, IHealth
     {
         [SerializeField] int maxHealth = 3;
+        [SerializeField] int currentHealth; 
 
-        int _currentHealth;
-        public int CurrentHealth => _currentHealth;
+        public bool IsDead => currentHealth < 1;
 
         public event System.Action OnHealthChanged;
 
         private void Awake()
         {
-            _currentHealth = maxHealth;
+            currentHealth = maxHealth;
         }
 
         public void TakeHit(IAttacker attacker)
         {
-           _currentHealth -= attacker.Damage;
+            if(IsDead) return;
+
+           currentHealth -= attacker.Damage;
             OnHealthChanged?.Invoke();
         }
     }

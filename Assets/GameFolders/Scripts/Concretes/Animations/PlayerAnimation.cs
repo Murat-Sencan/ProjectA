@@ -20,6 +20,11 @@ namespace Concretes.Animations
             _animator.SetTrigger("attack");
         }
 
+        public void DeadAnimation()
+        {
+            _animator.SetTrigger("dead");
+        }
+
         public void JumpAnimation(bool isJump)
         {
             if (_animator.GetBool("isJump") == isJump) return;
@@ -30,6 +35,11 @@ namespace Concretes.Animations
         public void MoveAnimation(float moveSpeed)
         {
             _animator.SetFloat("moveSpeed", Mathf.Abs(moveSpeed)); 
+        }
+
+        public void TakeHitAnimation()
+        {
+            _animator.SetTrigger("takeHit");
         }
     }
 }

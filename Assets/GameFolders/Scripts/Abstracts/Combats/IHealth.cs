@@ -6,7 +6,7 @@ namespace Abstracts.Combats
 {
     public interface IHealth : ITakeHit
     {
-        int CurrentHealth { get; }
+        bool IsDead { get; }
         event System.Action OnHealthChanged;
     }
 }

@@ -33,6 +33,8 @@ namespace Concretes.EnemyStates
 
         public void OnEnter()
         {
+            if(_patrols.Length < 1 ) return;
+          
             _currentPatrol = _patrols[_patrolIndex];
 
             Vector3 leftOrRight = _currentPatrol.position - _entityController.transform.position;
@@ -56,6 +58,8 @@ namespace Concretes.EnemyStates
 
         public void Tick()
         {
+            if (_currentPatrol == null) return;
+
             if(Vector2.Distance(_entityController.transform.position, _currentPatrol.position) <= 0.2f)
             {
                 IsWalking = false;

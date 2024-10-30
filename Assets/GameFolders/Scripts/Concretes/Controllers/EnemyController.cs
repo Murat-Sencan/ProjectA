@@ -14,43 +14,37 @@ namespace Concretes.Controllers
 {
     public class EnemyController : MonoBehaviour, IEntityController
     {
-        IMover _mover;
-        IAnimation _animation;
-        IFlip _flip;
-        StateMachine _stateMachine;
-        IEntityController _player;
-        IHealth _health;
 
         [SerializeField] float moveSpeed = 2f;
         [SerializeField] float chaseDistance = 3f;
         [SerializeField] float attackDistance = 1f;
-        [SerializeField] bool isTakeHit = false;
+        [SerializeField] float maxAttackTime = 2f;
         [SerializeField] Transform[] patrols;
 
+        StateMachine _stateMachine;
+        IEntityController _player;
 
         private void Awake()
         {
-            _mover = new Mover(this, moveSpeed);
-            _animation = new PlayerAnimation(GetComponent<Animator>());
-            _flip = new Flip(this);
             _stateMachine = new StateMachine();
-            _health = GetComponent<IHealth>();
             _player = FindObjectOfType<PlayerController>();
         }
 
-        private void OnEnable()
+        private IEnumerator Start()
         {
-            _health.OnHealthChanged += HandleHealthChanged;
-        }
+            IMover mover = new Mover(this, moveSpeed);
+            IAnimation animation = new PlayerAnimation(GetComponent<Animator>());
+            IFlip flip = new Flip(this);
+            IHealth health = GetComponent<IHealth>();
+            IAttacker attacker = GetComponent<IAttacker>();
+            IStopEdge stopEdge = GetComponent<IStopEdge>();
 
-        private void Start()
-        {
-            Idle idle = new Idle(_mover, _animation);
-            Walk walk = new Walk(this, _mover, _animation, _flip, patrols);
-            ChasePlayer chasePlayer = new ChasePlayer(this,_player, _mover, _flip, _animation, moveSpeed);
-            Attack attack = new Attack();
-            TakeHit takeHit = new TakeHit();
-            Dead dead = new Dead();
+            Idle idle = new Idle(mover, animation);
+            Walk walk = new Walk(this, mover, animation, flip, patrols);
+            ChasePlayer chasePlayer = new ChasePlayer(mover, flip, animation, stopEdge, moveSpeed, IsPlayerRightSide);
+            Attack attack = new Attack(_player.transform.GetComponent<IHealth>(), flip, animation, attacker, maxAttackTime, IsPlayerRightSide);
+            TakeHit takeHit = new TakeHit(health, animation);
+            Dead dead = new Dead(this, animation);
 
             _stateMachine.AddTransition(idle, walk, () => idle.IsIdle == false);
             _stateMachine.AddTransition(idle, chasePlayer, () => DistanceFromEnemyToPlayer() < chaseDistance);
@@ -61,17 +55,14 @@ namespace Concretes.Controllers
             _stateMachine.AddTransition(chasePlayer, idle, () => DistanceFromEnemyToPlayer() > chaseDistance);
             _stateMachine.AddTransition(attack, chasePlayer, () => DistanceFromEnemyToPlayer() > attackDistance);
 
-            _stateMachine.AddAnyState(dead, () => _health.CurrentHealth < 1);
-            _stateMachine.AddAnyState(takeHit, () => isTakeHit);
+            _stateMachine.AddAnyState(dead, () => health.IsDead);
+            _stateMachine.AddAnyState(takeHit, () => takeHit.IsTakeHit);
 
-            _stateMachine.AddTransition(takeHit, chasePlayer, () => isTakeHit == false);
+            _stateMachine.AddTransition(takeHit, chasePlayer, () => takeHit.IsTakeHit == false);
 
             _stateMachine.SetState(idle);
-        }
 
-        void HandleHealthChanged()
-        {
-            isTakeHit = true;
+            yield return null;
         }
 
         private void Update()
@@ -93,6 +84,20 @@ namespace Concretes.Controllers
         float DistanceFromEnemyToPlayer()
         {
             return Vector2.Distance(transform.position, _player.transform.position);
+        }
+
+        private bool IsPlayerRightSide()
+        {
+            Vector3 result = _player.transform.position - this.transform.position;
+
+            if(result.x > 0f)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }

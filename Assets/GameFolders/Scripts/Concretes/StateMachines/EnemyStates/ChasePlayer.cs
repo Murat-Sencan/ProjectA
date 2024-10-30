@@ -10,21 +10,21 @@ namespace Concretes.EnemyStates
 {
     public class ChasePlayer : IState
     {
-        IEntityController _enemy;
-        IEntityController _player;
         IMover _mover;
         IFlip _flip;
         IAnimation _animation;
+        System.Func<bool> _isPlayerRightSide;
+        IStopEdge _stopEdge;
         float _moveSpeed;
 
-        public ChasePlayer(IEntityController enemy, IEntityController player, IMover mover, IFlip flip, IAnimation animation, float moveSpeed)
+        public ChasePlayer(IMover mover, IFlip flip, IAnimation animation, IStopEdge stopEdge, float moveSpeed, System.Func<bool> isPlayerRightSide)
         {
-            _enemy = enemy;
-            _player = player;
             _mover = mover;
             _flip = flip;
             _animation = animation;
             _moveSpeed = moveSpeed;
+            _stopEdge = stopEdge;
+            _isPlayerRightSide = isPlayerRightSide;
         }
 
         public void OnEnter()
@@ -39,8 +39,13 @@ namespace Concretes.EnemyStates
 
         public void Tick()
         {
-            Vector3 leftOrRight = _player.transform.position - _enemy.transform.position;
-            if(leftOrRight.x > 0)
+            if(_stopEdge.ReachEdge())
+            {
+                _animation.MoveAnimation(0f);
+                return;
+            }
+
+            if(_isPlayerRightSide.Invoke())
             {
                 _mover.Tick(_moveSpeed * 1.2f);
                 _flip.FlipCharacter(1f);

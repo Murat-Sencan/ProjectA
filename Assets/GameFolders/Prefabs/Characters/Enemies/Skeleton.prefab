@@ -94,11 +94,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.515
+      value: 8.27
       objectReference: {fileID: 0}
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.746
+      value: -0.226
       objectReference: {fileID: 0}
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -132,9 +132,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1291877693268948534, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: patrols.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1393738538943338481, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4936963649320801350, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_Name
       value: Skeleton
+      objectReference: {fileID: 0}
+    - target: {fileID: 7356897241892326596, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: maxHealth
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
