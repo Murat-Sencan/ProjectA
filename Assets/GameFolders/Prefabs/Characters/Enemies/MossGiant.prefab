@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7404187072418455638}
   - component: {fileID: 5119609567722759743}
   m_Layer: 0
-  m_Name: Moss_Giant_Idle_0
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,7 +72,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 21300000, guid: 4c9fd358712904642a0587d35e7c2e9a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -94,15 +94,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 4.82
       objectReference: {fileID: 0}
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.85
       objectReference: {fileID: 0}
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0.28093076
       objectReference: {fileID: 0}
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalRotation.w
@@ -110,15 +110,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1116334333663851498, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -132,13 +132,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1291877693268948534, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: maxAttackTime
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291877693268948534, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: attackDistance
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2175905992527022011, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 22100000, guid: 23b0d96db9b5bf748b5eb9702fe9c3b3, type: 2}
     - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_Size.x
-      value: 1.1337669
+      value: 1.2432404
       objectReference: {fileID: 0}
     - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_Size.y
-      value: 2.2619166
+      value: 2.3031871
       objectReference: {fileID: 0}
     - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_Offset.x
@@ -146,11 +158,43 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_Offset.y
-      value: -0.31727076
+      value: -0.28288686
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 2850749210109334149, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: m_SpriteTilingProperty.adaptiveTilingThreshold
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 4936963649320801350, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: m_Name
       value: MossGiant
+      objectReference: {fileID: 0}
+    - target: {fileID: 7771460856085406098, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: damage
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -1,13 +1,15 @@
 using Abstracts.Animations;
+using Abstracts.Combats;
 using Abstracts.Controllers;
 using Abstracts.Inputs;
 using Abstracts.Movements;
 using Concretes.Animations;
 using Concretes.Inputs;
 using Concretes.Movements;
+using Concretes.Uis;
 using System.Collections;
 using System.Collections.Generic;
-using UnityEngine;
+using UnityEngine; 
 
 namespace Concretes.Controllers
 {
@@ -19,6 +21,7 @@ namespace Concretes.Controllers
         IFlip _flip;
         IJump _jump;
         IOnGround _onGround;
+        IHealth _health;
 
         float _horizontal;
         [SerializeField] float _moveSpeed;
@@ -34,10 +37,24 @@ namespace Concretes.Controllers
             _flip = new Flip(this);
             _jump = new Jump(GetComponent<Rigidbody2D>());
             _onGround = GetComponent<IOnGround>();
+            _health = GetComponent<IHealth>();
+        }
+
+        private void OnEnable()
+        {
+            _health.OnDead += _animation.DeadAnimation;
+        }
+
+        private void Start()
+        {
+            GameOverObject gameOverObject = FindObjectOfType<GameOverObject>();
+            gameOverObject.SetPlayerHealth(_health);
         }
 
         private void Update()
         {
+            if(_health.IsDead) return;
+
             _horizontal = _input.Horizontal;
 
             if(_input.AttackButtonDown && _horizontal == 0f)

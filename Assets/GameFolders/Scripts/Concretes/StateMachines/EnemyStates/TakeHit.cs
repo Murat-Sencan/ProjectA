@@ -19,7 +19,7 @@ namespace Concretes.EnemyStates
         public TakeHit(IHealth health, IAnimation animation)
         {
             _animation = animation;
-            health.OnHealthChanged += OnEnter;
+            health.OnHealthChanged += (currentHealth,maxHealth) => OnEnter();
         }
 
         public void OnEnter()

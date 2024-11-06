@@ -1,4 +1,5 @@
 using Abstracts.Combats;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,7 +13,8 @@ namespace Concretes.Combats
 
         public bool IsDead => currentHealth < 1;
 
-        public event System.Action OnHealthChanged;
+        public event System.Action<int, int> OnHealthChanged;
+        public event Action OnDead;
 
         private void Awake()
         {
@@ -24,7 +26,9 @@ namespace Concretes.Combats
             if(IsDead) return;
 
            currentHealth -= attacker.Damage;
-            OnHealthChanged?.Invoke();
+           OnHealthChanged?.Invoke(currentHealth, maxHealth);
+
+            if (IsDead) OnDead?.Invoke();
         }
     }
 }
