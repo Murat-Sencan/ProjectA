@@ -20,6 +20,7 @@ namespace Concretes.Controllers
         [SerializeField] float attackDistance = 1f;
         [SerializeField] float maxAttackTime = 2f;
         [SerializeField] Transform[] patrols;
+        [SerializeField] GameObject score;
 
         StateMachine _stateMachine;
         IEntityController _player;
@@ -44,7 +45,7 @@ namespace Concretes.Controllers
             ChasePlayer chasePlayer = new ChasePlayer(mover, flip, animation, stopEdge, moveSpeed, IsPlayerRightSide);
             Attack attack = new Attack(_player.transform.GetComponent<IHealth>(), flip, animation, attacker, maxAttackTime, IsPlayerRightSide);
             TakeHit takeHit = new TakeHit(health, animation);
-            Dead dead = new Dead(this, animation);
+            Dead dead = new Dead(this, animation, () => Instantiate(score, transform.position, Quaternion.identity));
 
             _stateMachine.AddTransition(idle, walk, () => idle.IsIdle == false);
             _stateMachine.AddTransition(idle, chasePlayer, () => DistanceFromEnemyToPlayer() < chaseDistance);

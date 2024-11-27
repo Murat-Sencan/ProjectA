@@ -11,18 +11,21 @@ namespace Concretes.EnemyStates
     {
         IAnimation _animation;
         IEntityController _controller;
+        System.Action _deadCallback;
 
         float _currentTime = 0f;
 
-        public Dead(IEntityController controller, IAnimation animation)
+        public Dead(IEntityController controller, IAnimation animation, System.Action deadCallback)
         {
             _animation = animation;
             _controller = controller;
+            _deadCallback = deadCallback;
         }
 
         public void OnEnter()
         {
             _animation.DeadAnimation();
+            _deadCallback?.Invoke();
         }
 
         public void OnExit()
