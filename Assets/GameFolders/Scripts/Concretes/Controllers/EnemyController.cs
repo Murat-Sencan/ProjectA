@@ -16,11 +16,17 @@ namespace Concretes.Controllers
     {
 
         [SerializeField] float moveSpeed = 2f;
+
         [SerializeField] float chaseDistance = 3f;
         [SerializeField] float attackDistance = 1f;
         [SerializeField] float maxAttackTime = 2f;
+
         [SerializeField] Transform[] patrols;
-        [SerializeField] GameObject score;
+        [SerializeField] ScoreController scorePrefab;
+
+        [SerializeField] int currentChance;
+        [SerializeField] int maxChance = 70;
+        [SerializeField] int minChance = 20;
 
         StateMachine _stateMachine;
         IEntityController _player;
@@ -33,6 +39,7 @@ namespace Concretes.Controllers
 
         private IEnumerator Start()
         {
+            currentChance = Random.Range(minChance, maxChance);
             IMover mover = new Mover(this, moveSpeed);
             IAnimation animation = new PlayerAnimation(GetComponent<Animator>());
             IFlip flip = new Flip(this);
@@ -45,7 +52,13 @@ namespace Concretes.Controllers
             ChasePlayer chasePlayer = new ChasePlayer(mover, flip, animation, stopEdge, moveSpeed, IsPlayerRightSide);
             Attack attack = new Attack(_player.transform.GetComponent<IHealth>(), flip, animation, attacker, maxAttackTime, IsPlayerRightSide);
             TakeHit takeHit = new TakeHit(health, animation);
-            Dead dead = new Dead(this, animation, () => Instantiate(score, transform.position, Quaternion.identity));
+            Dead dead = new Dead(this, animation, () =>
+            {
+                if (currentChance > Random.Range(0,100))
+                {
+                Instantiate(scorePrefab, transform.position, Quaternion.identity);
+                }
+            });
 
             _stateMachine.AddTransition(idle, walk, () => idle.IsIdle == false);
             _stateMachine.AddTransition(idle, chasePlayer, () => DistanceFromEnemyToPlayer() < chaseDistance);

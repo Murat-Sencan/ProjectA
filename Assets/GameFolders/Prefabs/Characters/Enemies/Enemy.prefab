@@ -148,7 +148,7 @@ MonoBehaviour:
   attackDistance: 1
   maxAttackTime: 2
   patrols: []
-  score: {fileID: 294202206935150806, guid: 9a1e6cf5f5519f94697b7d548f79d752, type: 3}
+  scorePrefab: {fileID: 3996173458654316878, guid: 9a1e6cf5f5519f94697b7d548f79d752, type: 3}
 --- !u!114 &7356897241892326596
 MonoBehaviour:
   m_ObjectHideFlags: 0

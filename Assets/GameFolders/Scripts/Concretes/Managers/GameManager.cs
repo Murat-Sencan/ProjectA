@@ -13,6 +13,7 @@ namespace Concretes.Managers
         public static GameManager Instance { get; private set; }
 
         public event System.Action<SceneTypeEnum> OnSceneChanged;
+        public event System.Action<int> OnScoreChanged;
 
         private void Awake()
         {
@@ -73,6 +74,12 @@ namespace Concretes.Managers
         public void QuitGame()
         {
             Application.Quit();
+        }
+
+        public void IncreaseScore(int scorePoint)
+        {
+            score += scorePoint;
+            OnScoreChanged?.Invoke(score);
         }
     }
 }
