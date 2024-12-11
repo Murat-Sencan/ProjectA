@@ -8,9 +8,11 @@ namespace Concretes.Managers
 {
     public class GameManager : MonoBehaviour
     {
-        [SerializeField] int score;
+        [SerializeField] int score; 
 
         public static GameManager Instance { get; private set; }
+
+        public int Score => score;
 
         public event System.Action<SceneTypeEnum> OnSceneChanged;
         public event System.Action<int> OnScoreChanged;
@@ -79,6 +81,12 @@ namespace Concretes.Managers
         public void IncreaseScore(int scorePoint)
         {
             score += scorePoint;
+            OnScoreChanged?.Invoke(score);
+        }
+
+        public void DecreaseScore(int scorePoint)
+        {
+            score -= scorePoint;
             OnScoreChanged?.Invoke(score);
         }
     }

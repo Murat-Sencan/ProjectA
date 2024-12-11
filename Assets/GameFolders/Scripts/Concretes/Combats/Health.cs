@@ -25,10 +25,16 @@ namespace Concretes.Combats
         {
             if(IsDead) return;
 
-           currentHealth -= attacker.Damage;
-           OnHealthChanged?.Invoke(currentHealth, maxHealth);
+            currentHealth = Math.Max(currentHealth -= attacker.Damage, 0);
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
 
             if (IsDead) OnDead?.Invoke();
+        }
+
+        public void Heal(int lifeCount)
+        {
+            currentHealth = Math.Min(currentHealth += lifeCount, maxHealth);
+            OnHealthChanged?.Invoke(currentHealth, maxHealth);
         }
     }
 }
