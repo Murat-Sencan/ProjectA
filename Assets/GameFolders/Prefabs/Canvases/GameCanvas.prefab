@@ -1654,6 +1654,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questionPanel: {fileID: 5250599307030877179}
+  shop: {fileID: 8021621017186807754}
 --- !u!1 &2939800905370494207
 GameObject:
   m_ObjectHideFlags: 0

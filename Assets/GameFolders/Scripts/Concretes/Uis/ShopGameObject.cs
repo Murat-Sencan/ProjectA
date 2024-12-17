@@ -1,5 +1,6 @@
 using Abstracts.Combats;
 using Concretes.Controllers;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ namespace Concretes.Uis
     public class ShopGameObject : MonoBehaviour
     {
         [SerializeField] QuestionPanel questionPanel;
+        [SerializeField] GameObject shop;
 
         IHealth _playerHealth;
 
@@ -26,6 +28,11 @@ namespace Concretes.Uis
         {
             questionPanel.gameObject.SetActive(true);
             questionPanel.SetLifeCountAndReferences(lifeCount, _playerHealth);
+        }
+
+        public void IsActiveShop(bool isActive)
+        {
+            shop.SetActive(isActive);
         }
     }
 }
