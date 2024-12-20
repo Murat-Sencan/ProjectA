@@ -133,6 +133,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1291877693268948534, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: maxAttackTime
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1291877693268948534, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: patrols.Array.size
       value: 2
       objectReference: {fileID: 0}

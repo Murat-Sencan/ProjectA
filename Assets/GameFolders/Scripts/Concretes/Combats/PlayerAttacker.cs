@@ -33,7 +33,6 @@ namespace Concretes.Combats
         private void HandleImpact()
         {
             int hitCount = Physics2D.OverlapCircleNonAlloc(attackDirection.position + attackDirection.forward, attackRadius, _attackResults);
-
             for (int i = 0; i < hitCount; i++)
             {
                 ITakeHit takeHit = _attackResults[i].GetComponent<ITakeHit>();
