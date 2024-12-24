@@ -192,9 +192,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: MossGiant
       objectReference: {fileID: 0}
+    - target: {fileID: 7356897241892326596, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
+      propertyPath: maxHealth
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 7771460856085406098, guid: 282039de40838f147b404aa4dcb0aa5c, type: 3}
       propertyPath: damage
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

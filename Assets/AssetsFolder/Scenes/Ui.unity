@@ -215,6 +215,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SplashCanvas
       objectReference: {fileID: 0}
+    - target: {fileID: 4577691199407399196, guid: 666a9394b3a54af478c9d5e45d70c3be, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

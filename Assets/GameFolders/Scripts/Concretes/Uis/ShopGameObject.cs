@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Concretes.Uis
 {
-    public class ShopGameObject : MonoBehaviour
+    public class ShopGameObject : MonoBehaviour 
     {
         [SerializeField] QuestionPanel questionPanel;
         [SerializeField] GameObject shop;
