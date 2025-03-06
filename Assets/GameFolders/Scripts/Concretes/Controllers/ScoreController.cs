@@ -14,6 +14,7 @@ namespace Concretes.Controllers
             if(collision.GetComponent<PlayerController>() != null)
             {
                 GameManager.Instance.IncreaseScore(scorePoint);
+                AudioManager.Instance.Play("Coin");
                 Destroy(this.gameObject);
             }
         }

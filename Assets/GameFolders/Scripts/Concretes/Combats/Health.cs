@@ -27,8 +27,13 @@ namespace Concretes.Combats
 
             currentHealth = Math.Max(currentHealth -= attacker.Damage, 0);
             OnHealthChanged?.Invoke(currentHealth, maxHealth);
+            AudioManager.Instance.Play("TakeHit");
 
-            if (IsDead) OnDead?.Invoke();
+            if (IsDead)
+            {
+                OnDead?.Invoke();
+                AudioManager.Instance.Play("Death");
+            }
         }
 
         public void Heal(int lifeCount)

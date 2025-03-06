@@ -40,6 +40,7 @@ namespace Concretes.Combats
                 if (takeHit != null)
                 {
                     Attack(takeHit);
+                    AudioManager.Instance.Play("Attack");
                 }
             }
         }
