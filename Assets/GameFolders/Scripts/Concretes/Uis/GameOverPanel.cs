@@ -1,7 +1,9 @@
+using Concretes.Enums;
 using Concretes.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Concretes.Uis
 {
@@ -9,12 +11,12 @@ namespace Concretes.Uis
     {
         public void YesButton()
         {
-            GameManager.Instance.SplashScreen("Game");
+            SceneManager.LoadScene("Game");
         }
 
         public void NoButton()
         {
-            GameManager.Instance.SplashScreen();
+            GameManager.Instance.QuitGame();
         }
     }
 }

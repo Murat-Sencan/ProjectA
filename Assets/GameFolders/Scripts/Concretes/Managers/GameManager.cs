@@ -14,7 +14,6 @@ namespace Concretes.Managers
 
         public int Score => score;
 
-        public event System.Action<SceneTypeEnum> OnSceneChanged;
         public event System.Action<int> OnScoreChanged;
 
         private void Awake()
@@ -33,44 +32,6 @@ namespace Concretes.Managers
             {
                 Destroy(this.gameObject);
             }
-        }
-
-        public void SplashScreen(string sceneName = "Menu")
-        {
-            SceneTypeEnum sceneType;
-
-            switch (sceneName)
-            {
-                case "Game":
-                    sceneType = SceneTypeEnum.Game; 
-                    break;
-                case "SplashScreen":
-                    sceneType = SceneTypeEnum.Splash;
-                    break;
-                default:
-                    sceneType = SceneTypeEnum.Menu;
-                    break;
-            }
-
-            StartCoroutine(SplashScreenAsync(sceneName, sceneType));
-        }
-
-        private IEnumerator SplashScreenAsync(string sceneName, SceneTypeEnum sceneType)
-        {
-            yield return SceneManager.LoadSceneAsync("SplashScreen", LoadSceneMode.Additive);
-            OnSceneChanged?.Invoke(SceneTypeEnum.Splash);
-
-            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName("SplashScreen"));
-
-            yield return new WaitForSeconds(1f);
-
-            yield return SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            yield return SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Additive);
-
-            OnSceneChanged.Invoke(sceneType);
-
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(sceneName));
         }
 
         public void QuitGame()

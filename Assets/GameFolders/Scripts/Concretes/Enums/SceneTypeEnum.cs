@@ -6,6 +6,6 @@ namespace Concretes.Enums
 {
     public enum SceneTypeEnum
     {
-        Menu, Game, Splash
+        Menu, Game, SplashScreen
     }
 }

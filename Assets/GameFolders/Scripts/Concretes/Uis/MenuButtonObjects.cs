@@ -1,15 +1,17 @@
+using Concretes.Enums;
 using Concretes.Managers;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Concretes.Uis
 {
     public class MenuButtonObjects : MonoBehaviour
     {
-        public void StartGame(string levelName)
+        public void StartGame()
         {
-            GameManager.Instance.SplashScreen(levelName);
+            SceneManager.LoadScene("Game");
         }
 
         public void QuitGame()
